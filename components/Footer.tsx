@@ -20,7 +20,7 @@ export default function Footer() {
     <div className="w-full border-t py-10 space-y-10 lg:px-0 px-5">
       <div className="space-y-2 ">
         <div className="underline">
-          <Link href="https://tally.so/r/nWEyaR" target="_blank">
+          <Link href="/contact-link-here" target="_blank">
             <span>Contact us</span>
           </Link>
         </div>{" "}
@@ -53,7 +53,7 @@ export default function Footer() {
           <Link
             className="bg-blue-500 px-5 py-2 rounded-md text-white underline"
             target="_blank"
-            href={"https://twitter.com/petr0105"}
+            href={"/twitter-link-here"}
           >
             Contact us on Twitter
           </Link>

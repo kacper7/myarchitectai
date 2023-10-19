@@ -128,7 +128,7 @@ export default function DropDown({ theme, setTheme, themes }: DropDownProps) {
                             🔒{" "}
                             <Link
                               href={
-                                "https://myarchitectai.lemonsqueezy.com/checkout/buy/875159c9-3c87-4ce1-8e2f-557191a03115"
+                                ""
                               }
                               target="_blank"
                             >

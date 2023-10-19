@@ -32,7 +32,7 @@ function SignInButton() {
           </Link>
         </div>
         <div>
-          <Link className="underline" href={"https://myarchitectai.lemonsqueezy.com/affiliates"} target="_blank">
+          <Link className="underline" href={"/affiliate-link-here"} target="_blank">
             Join us as an affiliate
           </Link>
         </div>
