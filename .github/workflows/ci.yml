@@ -20,7 +20,7 @@ jobs:
           version: latest
 
       - name: Start Supabase local development setup
-        run: supabase start -x studio,storage-api
+        run: supabase start -x studio
 
       - name: Verify generated types are checked in
         run: |
