@@ -7,9 +7,14 @@ import SquigglyLines from "../components/SquigglyLines";
 import QnA from "../components/QnA";
 import { useSupabase } from "../components/supabaseProvider";
 import { CompareSlider } from "../components/CompareSlider";
+import { REQUEST_SIGN_IN_MODAL } from "../utils/events";
 
 export default function HomePage() {
-  const { supabase, user, signInWithSupabase } = useSupabase();
+  const { user } = useSupabase();
+
+  function requestSignInModal() {
+    PubSub.publish(REQUEST_SIGN_IN_MODAL, {});
+  }
 
   return (
     <>
@@ -95,7 +100,7 @@ export default function HomePage() {
                 ) : (
                   <button
                     className="bg-black font-bold rounded-md text-white px-10 py-3 hover:bg-blue-500 transition"
-                    onClick={() => signInWithSupabase()}
+                    onClick={() => requestSignInModal()}
                   >
                     Build your dream home →
                   </button>
@@ -298,7 +303,7 @@ export default function HomePage() {
                 ) : (
                   <button
                     className="bg-black font-bold rounded-md text-white px-10 py-3 hover:bg-blue-500 transition"
-                    onClick={() => signInWithSupabase()}
+                    onClick={() => requestSignInModal()}
                   >
                     Build your dream home →
                   </button>
@@ -331,7 +336,7 @@ export default function HomePage() {
                 ) : (
                   <button
                     className="bg-black font-bold rounded-md text-white px-10 py-3 hover:bg-blue-500 transition"
-                    onClick={() => signInWithSupabase()}
+                    onClick={() => requestSignInModal()}
                   >
                     Build your dream home →
                   </button>
@@ -661,7 +666,7 @@ export default function HomePage() {
                   ) : (
                     <button
                       className="bg-blue-500 rounded-md w-full text-white px-4 py-3 hover:bg-black transition font-bold"
-                      onClick={() => signInWithSupabase()}
+                      onClick={() => requestSignInModal()}
                     >
                       Build your dream home →
                     </button>

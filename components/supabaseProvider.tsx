@@ -12,7 +12,8 @@ interface SupabaseContextType {
   supabase: SupabaseClient;
   user: User | null;
   packageType: string;
-  signInWithSupabase: () => Promise<void>;
+  signInWithGoogle: () => Promise<void>;
+  signInWithEmail: (email: string, password: string) => Promise<void>;
 }
 
 const SupabaseContext = createContext<SupabaseContextType | undefined>(
@@ -33,29 +34,33 @@ const SupabaseProvider: React.FC<SupabaseProviderProps> = ({ children }) => {
   const [packageType, setPackageType] = useState("free");
 
   async function fetchUser() {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    if (user) {
-      setUser(user);
-    }
+    await supabase.auth.getUser().then(({ data }) => {
+      const { user } = data
+      if (user) setUser(user);
+    })
   }
 
-  async function signInWithSupabase() {
-    try {
-      const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: "google",
-      });
-
-      if (error) {
-        throw new Error(error.message);
-      } else {
-
-      }
-    } catch (error) {
+  async function signInWithEmail(email: string, password: string) {
+    await supabase.auth.signInWithPassword({
+      email,
+      password
+    }).then(({ data, error }) => {
+      if (error) throw new Error(error.message);
+    }).catch((error) => {
+      // TODO: Handle error
       console.log(error);
-    }
+    })
+  }
+
+  async function signInWithGoogle() {
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+    }).then(({ data, error }) => {
+      if (error) throw new Error(error.message);
+    }).catch((error) => {
+      // TODO: Handle error
+      console.log(error);
+    })
   }
 
   async function checkUserPackage() {
@@ -92,7 +97,9 @@ const SupabaseProvider: React.FC<SupabaseProviderProps> = ({ children }) => {
 
   return (
     <SupabaseContext.Provider
-      value={{ supabase, user, signInWithSupabase, packageType }}
+      value={
+        { supabase, user, signInWithGoogle, signInWithEmail, packageType }
+      }
     >
       {children}
     </SupabaseContext.Provider>

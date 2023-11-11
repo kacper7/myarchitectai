@@ -1,7 +1,6 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
-import SignInButton from "./SignInButton";
+import AuthHeaderOptions from "./auth/HeaderOptions";
 import { useSupabase } from "./supabaseProvider";
 
 export default function Header() {
@@ -51,7 +50,7 @@ export default function Header() {
 
           <div className="flex items-center space-x-5"></div>
         </div>{" "}
-        <SignInButton />
+        <AuthHeaderOptions />
       </header>
     </>
   );
