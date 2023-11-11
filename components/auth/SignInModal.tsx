@@ -9,7 +9,14 @@ export default function AuthSignInModal() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { signInWithGoogle, signInWithEmail } = useSupabase();
+  const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState<string[]>([]);
+  const [isSignUp, setIsSignUp] = useState(false);
+  const { signInWithGoogle, signInWithEmail, signUpWithEmail } = useSupabase();
+
+  const toggleSignUp = () => {
+    setIsSignUp(!isSignUp);
+  }
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -21,7 +28,18 @@ export default function AuthSignInModal() {
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await signInWithEmail(email, password)
+    setErrors([]);
+    setIsLoading(true);
+    if (isSignUp) {
+      await signUpWithEmail(email, password).then((errors) => {
+        setErrors(errors);
+      })
+    } else {
+      await signInWithEmail(email, password).then((errors) => {
+        setErrors(errors);
+      })
+    }
+    setIsLoading(false);
   }
 
   useEffect(() => {
@@ -47,6 +65,15 @@ export default function AuthSignInModal() {
         </p>
 
         <form className="w-full flex flex-col" onSubmit={handleFormSubmit}>
+          {
+            errors.length > 0 && (
+              <div className="flex flex-col gap-2">
+                { errors.map((error, index) => (
+                  <p key={index} className="text-center text-red-500">{error}</p>
+                ))}
+              </div>
+            )
+          }
           <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
             Email
           </label>
@@ -73,10 +100,25 @@ export default function AuthSignInModal() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <button type="submit" className="mt-4 text-white font-bold bg-black px-5 py-2 rounded-md hover:bg-blue-500">
-            Sign in
+          <button type="submit" disabled={isLoading} className="mt-4 text-white font-bold bg-black px-5 py-2 rounded-md hover:bg-blue-500">
+            { isLoading
+              ? (isSignUp ? "Signing Up..." : "Signing In...")
+              : (isSignUp ? "Sign Up" : "Sign In")
+            }
           </button>
         </form>
+        { !isSignUp && (
+          <p className="w-full text-center">
+            Don't have an account?
+            <button className="ml-1 underline" onClick={toggleSignUp}>Sign Up</button>
+          </p>
+        )}
+        { isSignUp && (
+          <p className="w-full text-center">
+            Already have an account?
+            <button className="ml-1 underline" onClick={toggleSignUp}>Sign In</button>
+          </p>
+        )}
       </div>
     </Modal>
   )

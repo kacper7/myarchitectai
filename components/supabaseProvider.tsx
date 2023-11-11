@@ -13,7 +13,8 @@ interface SupabaseContextType {
   user: User | null;
   packageType: string;
   signInWithGoogle: () => Promise<void>;
-  signInWithEmail: (email: string, password: string) => Promise<void>;
+  signInWithEmail: (email: string, password: string) => Promise<string[]>;
+  signUpWithEmail: (email: string, password: string) => Promise<string[]>;
 }
 
 const SupabaseContext = createContext<SupabaseContextType | undefined>(
@@ -41,18 +42,42 @@ const SupabaseProvider: React.FC<SupabaseProviderProps> = ({ children }) => {
   }
 
   async function signInWithEmail(email: string, password: string) {
+    const errors: string[] = [];
     await supabase.auth.signInWithPassword({
       email,
       password
     }).then(({ data, error }) => {
-      if (error) throw new Error(error.message);
+      if (error) {
+        errors.push(error.message);
+        throw new Error(error.message);
+      }
 
       const { user } = data;
       if (user) setUser(user);
     }).catch((error) => {
-      // TODO: Handle error
       console.log(error);
     })
+    return errors;
+  }
+
+  async function signUpWithEmail(email: string, password: string) {
+    const errors: string[] = [];
+    await supabase.auth.signUp({
+      email,
+      password,
+    }).then(({ data, error }) => {
+      if (error) {
+        errors.push(error.message);
+        throw new Error(error.message);
+      }
+
+      const { user } = data;
+      if (user) setUser(user);
+    }).catch((error) => {
+      console.log(error);
+    })
+
+    return errors;
   }
 
   async function signInWithGoogle() {
@@ -101,7 +126,7 @@ const SupabaseProvider: React.FC<SupabaseProviderProps> = ({ children }) => {
   return (
     <SupabaseContext.Provider
       value={
-        { supabase, user, signInWithGoogle, signInWithEmail, packageType }
+        { supabase, user, signInWithGoogle, signInWithEmail, signUpWithEmail, packageType }
       }
     >
       {children}
