@@ -35,6 +35,7 @@ import {
 } from "../../utils/dropdownTypes";
 import { useSupabase } from "../../components/supabaseProvider";
 import { User } from "@supabase/supabase-js";
+import { LEMON_SQUEEZY_URL } from "../../utils/constants";
 
 const uploader = Uploader({
   apiKey: !!process.env.NEXT_PUBLIC_UPLOAD_API_KEY
@@ -91,7 +92,11 @@ function page() {
 
   // supaabse stuff
   // const [packageType, setPackageType] = useState("free");
-  const { supabase, packageType } = useSupabase();
+  const { supabase, user, packageType } = useSupabase();
+  const lemonSquezyParams = user
+    ? new URLSearchParams({ 'checkout[email]': user?.email as string })
+    : new URLSearchParams({});
+  const lemonSqueezyUrl = `${LEMON_SQUEEZY_URL}?${lemonSquezyParams.toString()}`;
 
   // async function checkUserPackage() {
   //   const {
@@ -290,7 +295,7 @@ function page() {
           <span>
             You are currently on the limited Free Plan{" "}
             <Link
-              href="https://myarchitectai.lemonsqueezy.com/checkout/buy/875159c9-3c87-4ce1-8e2f-557191a03115"
+              href={lemonSqueezyUrl}
               target="_blank"
               className="underline font-bold"
             >
