@@ -46,6 +46,9 @@ const SupabaseProvider: React.FC<SupabaseProviderProps> = ({ children }) => {
       password
     }).then(({ data, error }) => {
       if (error) throw new Error(error.message);
+
+      const { user } = data;
+      if (user) setUser(user);
     }).catch((error) => {
       // TODO: Handle error
       console.log(error);
