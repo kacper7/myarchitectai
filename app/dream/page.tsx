@@ -92,7 +92,10 @@ function page() {
 
   const { supabase, user, packageType } = useSupabase();
   const lemonSquezyParams = user
-    ? new URLSearchParams({ 'checkout[email]': user?.email as string })
+    ? new URLSearchParams({
+      'checkout[email]': user.email as string,
+      'checkout[custom][user_id]': user.id,
+    })
     : new URLSearchParams({});
   const lemonSqueezyUrl = `${LEMON_SQUEEZY_URL}?${lemonSquezyParams.toString()}`;
 
