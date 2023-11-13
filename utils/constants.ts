@@ -1,5 +1,7 @@
-const LEMON_SQUEEZY_URL = "https://myarchitectai.lemonsqueezy.com/checkout/buy/875159c9-3c87-4ce1-8e2f-557191a03115"
+const LEMON_SQUEEZY_URL = process.env.NEXT_PUBLIC_LEMON_SQUEEZY_URL
+const LEMON_SQUEEZY_SIGNING_KEY = process.env.LEMON_SQUEEZY_SIGNING_KEY || ""
 
 export {
-  LEMON_SQUEEZY_URL
+  LEMON_SQUEEZY_URL,
+  LEMON_SQUEEZY_SIGNING_KEY,
 }
