@@ -12,7 +12,10 @@ interface SupabaseContextType {
   supabase: SupabaseClient;
   user: User | null;
   packageType: string;
-  signInWithSupabase: () => Promise<void>;
+  subscriptionActive: boolean;
+  signInWithGoogle: () => Promise<void>;
+  signInWithEmail: (email: string, password: string) => Promise<string[]>;
+  signUpWithEmail: (email: string, password: string) => Promise<string[]>;
 }
 
 const SupabaseContext = createContext<SupabaseContextType | undefined>(
@@ -31,57 +34,94 @@ const SupabaseProvider: React.FC<SupabaseProviderProps> = ({ children }) => {
 
   const [user, setUser] = useState<User | null>(null);
   const [packageType, setPackageType] = useState("free");
+  const [subscriptionActive, setSubscriptionActive] = useState(false);
 
   async function fetchUser() {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    if (user) {
-      setUser(user);
-    }
+    await supabase.auth.getUser().then(({ data }) => {
+      const { user } = data
+      if (user) setUser(user);
+    })
   }
 
-  async function signInWithSupabase() {
-    try {
-      const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: "google",
-      });
-
+  async function signInWithEmail(email: string, password: string) {
+    const errors: string[] = [];
+    await supabase.auth.signInWithPassword({
+      email,
+      password
+    }).then(({ data, error }) => {
       if (error) {
+        errors.push(error.message);
         throw new Error(error.message);
-      } else {
-
       }
-    } catch (error) {
+
+      const { user } = data;
+      if (user) setUser(user);
+    }).catch((error) => {
       console.log(error);
-    }
+    })
+    return errors;
+  }
+
+  async function signUpWithEmail(email: string, password: string) {
+    const errors: string[] = [];
+    await supabase.auth.signUp({
+      email,
+      password,
+    }).then(({ data, error }) => {
+      if (error) {
+        errors.push(error.message);
+        throw new Error(error.message);
+      }
+
+      const { user } = data;
+      if (user) setUser(user);
+    }).catch((error) => {
+      console.log(error);
+    })
+
+    return errors;
+  }
+
+  async function signInWithGoogle() {
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+    }).then(({ data, error }) => {
+      if (error) throw new Error(error.message);
+    }).catch((error) => {
+      // TODO: Handle error
+      console.log(error);
+    })
   }
 
   async function checkUserPackage() {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (user) {
-      const { data, error } = await supabase
-        .from("myarchitectai_users")
-        .select("*")
-        .eq("email", user.email)
-        .single();
+    try {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user) return;
 
-      if (data) {
-        // console.log(data);
-
-        switch (data.package) {
-          case "free":
-            break;
-          case "pro":
-            setPackageType("pro");
-            break;
-          default:
-            break;
-        }
+      const  { data, error } = await supabase.from("user_details").select("*").eq("user_id", user.id).single();
+      if (error) throw error;
+      if (!data) {
+        setPackageType("free");
+        return;
       }
+
+      const {
+        subscription_package,
+        subscription_status,
+        subscription_renews_at,
+      } = data;
+      const isSubscriptionActive = !["expired", "unpaid", "past_due"].includes(subscription_status)
+        && !!subscription_renews_at
+        && subscription_renews_at > new Date().toISOString();
+
+      if (isSubscriptionActive) {
+        setSubscriptionActive(true);
+        setPackageType(subscription_package);
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -92,7 +132,9 @@ const SupabaseProvider: React.FC<SupabaseProviderProps> = ({ children }) => {
 
   return (
     <SupabaseContext.Provider
-      value={{ supabase, user, signInWithSupabase, packageType }}
+      value={
+        { supabase, user, signInWithGoogle, signInWithEmail, signUpWithEmail, packageType, subscriptionActive }
+      }
     >
       {children}
     </SupabaseContext.Provider>

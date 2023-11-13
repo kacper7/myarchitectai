@@ -4,9 +4,15 @@ import Header from "../../components/Header";
 import { useSupabase } from "../../components/supabaseProvider";
 import Link from "next/link";
 import Footer from "../../components/Footer";
+import { REQUEST_SIGN_IN_MODAL } from "../../utils/events";
 
 function page() {
-  const { supabase, user, signInWithSupabase } = useSupabase();
+  const { supabase, user } = useSupabase();
+
+  function requestSignInModal() {
+    PubSub.publish(REQUEST_SIGN_IN_MODAL, {});
+  }
+
   return (
     <div className=" max-w-6xl mx-auto">
       <Header />
@@ -144,7 +150,7 @@ function page() {
                 ) : (
                   <button
                     className="bg-blue-500 rounded-md w-full text-white px-4 py-3 hover:bg-black transition font-bold"
-                    onClick={() => signInWithSupabase()}
+                    onClick={() => requestSignInModal()}
                   >
                     Build your dream home →
                   </button>

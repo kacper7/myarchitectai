@@ -23,6 +23,7 @@
     "framer-motion": "^8.2.4",
     "next": "^13.4.4",
     "next-auth": "^4.22.1",
+    "pubsub-js": "^1.9.4",
     "react": "^18.2.0",
     "react-compare-slider": "^2.2.0",
     "react-countup": "^6.4.0",
@@ -37,6 +38,7 @@
   },
   "devDependencies": {
     "@types/node": "18.11.3",
+    "@types/pubsub-js": "^1.8.6",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
     "@types/request-ip": "^0.0.37",

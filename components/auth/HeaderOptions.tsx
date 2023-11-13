@@ -1,17 +1,19 @@
-"use client";
-import React, { useState, useEffect } from "react";
+'use client';
+import React from "react";
 import Link from "next/link";
-import { Menu } from "@headlessui/react";
-import { Dropdown } from "antd";
-import { useRouter } from "next/navigation";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/dist/client/components/headers";
-import { useSupabase } from "../components/supabaseProvider";
+import PubSub from "pubsub-js";
+import { useSupabase } from "../supabaseProvider";
+import AuthSignInModal from "./SignInModal";
+import { REQUEST_SIGN_IN_MODAL } from "../../utils/events";
 
-function SignInButton() {
-  const { supabase, user, signInWithSupabase } = useSupabase();
+export default function AuthHeaderOptions() {
+  const { supabase, user } = useSupabase();
 
-  async function handleSignOut() {
+  function requestSignInModal() {
+    PubSub.publish(REQUEST_SIGN_IN_MODAL, {});
+  }
+
+  async function handleSignOut(): Promise<void> {
     try {
       const { error } = await supabase.auth.signOut();
 
@@ -19,11 +21,12 @@ function SignInButton() {
         window.location.reload();
       }
     } catch (error) {
+      // TODO: Handle error
       console.log(error);
     }
   }
 
-  if (!user)
+  if (!user) {
     return (
       <div className="space-x-10 flex items-center">
         <div>
@@ -38,12 +41,15 @@ function SignInButton() {
         </div>
         <button
           className="text-white font-bold bg-black px-5 py-2 rounded-md hover:bg-blue-500"
-          onClick={signInWithSupabase}
+          onClick={requestSignInModal}
         >
           Get Started
         </button>
+
+        <AuthSignInModal />
       </div>
-    );
+    )
+  }
 
   return (
     <div>
@@ -51,7 +57,5 @@ function SignInButton() {
         Sign out
       </button>
     </div>
-  );
+  )
 }
-
-export default SignInButton;

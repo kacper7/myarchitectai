@@ -12,6 +12,10 @@ jobs:
   supabase:
     runs-on: ubuntu-latest
 
+    env:
+      SUPABASE_AUTH_GOOGLE_CLIENT_ID: sample_client_id
+      SUPABASE_AUTH_GOOGLE_SECRET: sample_client_secret
+
     steps:
       - uses: actions/checkout@v3
 
