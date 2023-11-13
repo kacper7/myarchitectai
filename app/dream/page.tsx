@@ -90,44 +90,11 @@ function page() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [highlight, setHighlight] = useState(false);
 
-  // supaabse stuff
-  // const [packageType, setPackageType] = useState("free");
   const { supabase, user, packageType } = useSupabase();
   const lemonSquezyParams = user
     ? new URLSearchParams({ 'checkout[email]': user?.email as string })
     : new URLSearchParams({});
   const lemonSqueezyUrl = `${LEMON_SQUEEZY_URL}?${lemonSquezyParams.toString()}`;
-
-  // async function checkUserPackage() {
-  //   const {
-  //     data: { user },
-  //   } = await supabase.auth.getUser();
-  //   if (user) {
-  //     const { data, error } = await supabase
-  //       .from("myarchitectai_users")
-  //       .select("*")
-  //       .eq("email", user.email)
-  //       .single();
-
-  //     if (data) {
-  //       console.log(data);
-
-  //       switch (data.package) {
-  //         case "free":
-  //           break;
-  //         case "pro":
-  //           setPackageType("pro");
-  //           break;
-  //         default:
-  //           break;
-  //       }
-  //     }
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   checkUserPackage();
-  // }, []);
 
   const handleDragEnter = (event: any) => {
     event.preventDefault();

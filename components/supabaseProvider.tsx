@@ -12,6 +12,7 @@ interface SupabaseContextType {
   supabase: SupabaseClient;
   user: User | null;
   packageType: string;
+  subscriptionActive: boolean;
   signInWithGoogle: () => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<string[]>;
   signUpWithEmail: (email: string, password: string) => Promise<string[]>;
@@ -33,6 +34,7 @@ const SupabaseProvider: React.FC<SupabaseProviderProps> = ({ children }) => {
 
   const [user, setUser] = useState<User | null>(null);
   const [packageType, setPackageType] = useState("free");
+  const [subscriptionActive, setSubscriptionActive] = useState(false);
 
   async function fetchUser() {
     await supabase.auth.getUser().then(({ data }) => {
@@ -92,29 +94,34 @@ const SupabaseProvider: React.FC<SupabaseProviderProps> = ({ children }) => {
   }
 
   async function checkUserPackage() {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (user) {
-      const { data, error } = await supabase
-        .from("myarchitectai_users")
-        .select("*")
-        .eq("email", user.email)
-        .single();
+    try {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user) return;
 
-      if (data) {
-        // console.log(data);
-
-        switch (data.package) {
-          case "free":
-            break;
-          case "pro":
-            setPackageType("pro");
-            break;
-          default:
-            break;
-        }
+      const  { data, error } = await supabase.from("user_details").select("*").eq("user_id", user.id).single();
+      if (error) throw error;
+      if (!data) {
+        setPackageType("free");
+        return;
       }
+
+      const {
+        subscription_package,
+        subscription_status,
+        subscription_renews_at,
+      } = data;
+      const isSubscriptionActive = !["expired", "unpaid", "past_due"].includes(subscription_status)
+        && !!subscription_renews_at
+        && subscription_renews_at > new Date().toISOString();
+
+      if (isSubscriptionActive) {
+        setSubscriptionActive(true);
+        setPackageType(subscription_package);
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -126,7 +133,7 @@ const SupabaseProvider: React.FC<SupabaseProviderProps> = ({ children }) => {
   return (
     <SupabaseContext.Provider
       value={
-        { supabase, user, signInWithGoogle, signInWithEmail, signUpWithEmail, packageType }
+        { supabase, user, signInWithGoogle, signInWithEmail, signUpWithEmail, packageType, subscriptionActive }
       }
     >
       {children}
