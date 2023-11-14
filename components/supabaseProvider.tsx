@@ -7,6 +7,7 @@ import React, {
   ReactNode,
 } from "react";
 import { createClient, SupabaseClient, User } from "@supabase/supabase-js";
+import { setCookie, deleteCookie } from "../utils/cookies";
 
 interface SupabaseContextType {
   supabase: SupabaseClient;
@@ -31,6 +32,16 @@ const SupabaseProvider: React.FC<SupabaseProviderProps> = ({ children }) => {
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   ) as SupabaseClient;
+
+  if (typeof window !== "undefined") {
+    supabase.auth.onAuthStateChange((event, session) => {
+      if (session && session.expires_at) {
+        setCookie("sb.auth.token", session.access_token, session.expires_at * 1000);
+      } else {
+        deleteCookie("sb.auth.token")
+      }
+    })
+  }
 
   const [user, setUser] = useState<User | null>(null);
   const [packageType, setPackageType] = useState("free");

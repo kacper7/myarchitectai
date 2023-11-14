@@ -39,6 +39,8 @@ import {
 } from "../../utils/dropdownTypes";
 import { useSupabase } from "../../components/supabaseProvider";
 import { User } from "@supabase/supabase-js";
+import PubSub from "pubsub-js";
+import { REQUEST_SIGN_IN_MODAL } from "../../utils/events";
 
 const uploader = Uploader({
   apiKey: !!process.env.NEXT_PUBLIC_UPLOAD_API_KEY
@@ -96,7 +98,7 @@ function page() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [highlight, setHighlight] = useState(false);
   const [userPrompt, setUserPrompt] = useState("");
-  const { supabase, packageType } = useSupabase();
+  const { user, packageType } = useSupabase();
 
   const handleDragEnter = (event: any) => {
     event.preventDefault();
@@ -214,6 +216,11 @@ function page() {
   });
 
   async function generatePhoto() {
+    if (!user) {
+      PubSub.publish(REQUEST_SIGN_IN_MODAL);
+      return;
+    }
+
     try {
       setLoading(true);
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -316,7 +323,7 @@ function page() {
             <>
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3">
-                  <p className="text-left font-bold font-bold text-stone-600">
+                  <p className="text-left font-bold text-stone-600">
                     Choose the number of floors ({floors.length})
                   </p>
                 </div>
@@ -331,7 +338,7 @@ function page() {
 
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3">
-                  <p className="text-left font-bold font-bold text-stone-600">
+                  <p className="text-left font-bold text-stone-600">
                     Choose the color ({colors.length})
                   </p>
                 </div>
@@ -372,7 +379,7 @@ function page() {
             <>
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3">
-                  <p className="text-left font-bold font-bold text-stone-600">
+                  <p className="text-left font-bold text-stone-600">
                     Choose the number of floors ({floors.length})
                   </p>
                 </div>
@@ -387,7 +394,7 @@ function page() {
 
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3">
-                  <p className="text-left font-bold font-bold text-stone-600">
+                  <p className="text-left font-bold text-stone-600">
                     Choose the color ({colors.length})
                   </p>
                 </div>

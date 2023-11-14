@@ -1,7 +1,8 @@
 import { Ratelimit } from "@upstash/ratelimit";
 import redis from "../../utils/redis";
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { headers } from "next/headers";
+import { validateUserFromJWT, allowedToRender, updateRendersCount } from "../../services/user";
 
 // Create a new ratelimiter, that allows 3 requests per 24 hours
 // const ratelimit = redis
@@ -12,7 +13,20 @@ import { headers } from "next/headers";
 //     })
 //   : undefined;
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
+  const accessToken = request.cookies.get("sb.auth.token")?.value;
+  const userDetails = await validateUserFromJWT(accessToken);
+  if (!userDetails) {
+    return NextResponse.json({ error: "Please sign in to perform this action" }, { status: 401 });
+  }
+  const canRender = allowedToRender(userDetails.subscription_package, userDetails.number_of_renders);
+  if (!canRender) {
+    return NextResponse.json(
+      { error: "You have reached your render limit for this month. Please upgrade to a paid plan to continue using this feature." },
+      { status: 429 }
+    );
+  }
+
   // Rate Limiter Code
   // if (ratelimit) {
   //   const headersList = headers();
@@ -83,6 +97,10 @@ export async function POST(request: Request) {
     } else {
       await new Promise((resolve) => setTimeout(resolve, 1000));
     }
+  }
+
+  if (restoredImage) {
+    updateRendersCount(userDetails.user_id);
   }
 
   return NextResponse.json(

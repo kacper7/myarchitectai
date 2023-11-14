@@ -273,7 +273,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="lg:flex justify-between items-center w-full lg:space-x-24 pt-48 items-center">
+          <div className="lg:flex justify-between items-center w-full lg:space-x-24 pt-48">
             <div className="lg:w-1/2 lg:pt-0 pt-10">
               <img src="/img/architecture-styles.png" />
               {/* <CompareSlider original="/img/exterior-before.png" restored="/img/exterior-after.png" /> */}

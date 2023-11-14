@@ -21,6 +21,7 @@
     "crisp-sdk-web": "^1.0.20",
     "express-rate-limit": "^6.7.1",
     "framer-motion": "^8.2.4",
+    "jsonwebtoken": "^9.0.2",
     "next": "^13.4.4",
     "next-auth": "^4.22.1",
     "pubsub-js": "^1.9.4",
@@ -37,6 +38,7 @@
     "uploader": "^3.9.0"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.5",
     "@types/node": "18.11.3",
     "@types/pubsub-js": "^1.8.6",
     "@types/react": "18.0.21",
