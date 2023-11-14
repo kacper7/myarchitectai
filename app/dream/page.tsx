@@ -353,7 +353,7 @@ function page() {
             <>
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3">
-                  <p className="text-left font-bold font-bold text-stone-600">
+                  <p className="text-left font-bold text-stone-600">
                     Choose your building type ({buildingTypes.length})
                   </p>
                 </div>
@@ -368,7 +368,7 @@ function page() {
 
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3">
-                  <p className="text-left font-bold font-bold text-stone-600">
+                  <p className="text-left font-bold text-stone-600">
                     Choose your style ({houseStyles.length})
                   </p>
                 </div>
@@ -430,7 +430,7 @@ function page() {
             <>
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3">
-                  <p className="text-left font-bold font-bold text-stone-600">
+                  <p className="text-left font-bold text-stone-600">
                     Choose your building type ({buildingTypes.length})
                   </p>
                 </div>
@@ -445,7 +445,7 @@ function page() {
 
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3">
-                  <p className="text-left font-bold font-bold text-stone-600">
+                  <p className="text-left font-bold text-stone-600">
                     Choose your style ({houseStyles.length})
                   </p>
                 </div>
