@@ -11,11 +11,14 @@ export default function AuthSignInModal() {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
+  const [notices, setNotices] = useState<string[]>([]);
   const [isSignUp, setIsSignUp] = useState(false);
   const { signInWithGoogle, signInWithEmail, signUpWithEmail } = useSupabase();
 
   const toggleSignUp = () => {
     setIsSignUp(!isSignUp);
+    setErrors([]);
+    setNotices([]);
   }
 
   const showModal = () => {
@@ -29,10 +32,14 @@ export default function AuthSignInModal() {
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrors([]);
+    setNotices([]);
     setIsLoading(true);
     if (isSignUp) {
       await signUpWithEmail(email, password).then((errors) => {
         setErrors(errors);
+        if (errors.length === 0) {
+          setNotices(["Your account has been created! Please check your email for a confirmation link."]);
+        }
       })
     } else {
       await signInWithEmail(email, password).then((errors) => {
@@ -70,6 +77,15 @@ export default function AuthSignInModal() {
               <div className="flex flex-col gap-2">
                 { errors.map((error, index) => (
                   <p key={index} className="text-center text-red-500">{error}</p>
+                ))}
+              </div>
+            )
+          }
+          {
+            notices.length > 0 && (
+              <div className="flex flex-col gap-2">
+                { notices.map((error, index) => (
+                  <p key={index} className="text-center text-green-500">{error}</p>
                 ))}
               </div>
             )

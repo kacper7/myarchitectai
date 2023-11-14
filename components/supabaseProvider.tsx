@@ -72,9 +72,6 @@ const SupabaseProvider: React.FC<SupabaseProviderProps> = ({ children }) => {
         errors.push(error.message);
         throw new Error(error.message);
       }
-
-      const { user } = data;
-      if (user) setUser(user);
     }).catch((error) => {
       console.log(error);
     })
