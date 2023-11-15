@@ -20,6 +20,8 @@ import {
   colorType,
 } from "../utils/dropdownTypes";
 import Link from "next/link";
+import { useSupabase } from "./supabaseProvider";
+import { generateCheckoutLink } from "../services/lemonsqueezy";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -71,6 +73,10 @@ interface DropDownProps {
 
 // TODO: Change names since this is a generic dropdown now
 export default function DropDown({ theme, setTheme, themes }: DropDownProps) {
+  const { user, packageType } = useSupabase();
+  const lemonSqueezyUrl = generateCheckoutLink(user);
+  const isFree = packageType === "free";
+
   return (
     <Menu as="div" className="relative block text-left">
       <div>
@@ -110,15 +116,15 @@ export default function DropDown({ theme, setTheme, themes }: DropDownProps) {
                       active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                       themeItem === theme ? "bg-gray-200" : "",
                       "px-4 py-2 text-sm w-full text-left flex items-center space-x-2 justify-between",
-                      index >= 3 ? "disabled" : "" // Add 'disabled' class for options beyond the first three
+                      index >= 3 && isFree ? "disabled" : ""
                     )}
-                    disabled={index >= 3} // Disable options beyond the first three
+                    disabled={index >= 3 && isFree }
                   >
                     <div className="flex justify-between w-full">
                       <div>
                         <span>{themeItem}</span>
                       </div>
-                      {index >= 3 ? (
+                      {index >= 3 && isFree ? (
                         <div>
                           <span
                             role="img"
@@ -127,10 +133,9 @@ export default function DropDown({ theme, setTheme, themes }: DropDownProps) {
                           >
                             🔒{" "}
                             <Link
-                              href={
-                                ""
-                              }
+                              href={lemonSqueezyUrl}
                               target="_blank"
+                              rel="noopener noreferrer"
                             >
                               Upgrade
                             </Link>
