@@ -41,6 +41,7 @@ import { useSupabase } from "../../components/supabaseProvider";
 import { User } from "@supabase/supabase-js";
 import PubSub from "pubsub-js";
 import { REQUEST_SIGN_IN_MODAL } from "../../utils/events";
+import PlanNotice from "../../components/PlanNotice";
 
 const uploader = Uploader({
   apiKey: !!process.env.NEXT_PUBLIC_UPLOAD_API_KEY
@@ -261,22 +262,7 @@ function page() {
 
   return (
     <div className="m-auto">
-      {/* <Header /> */}
-
-      {packageType !== "free" ? null : (
-        <div className="bg-blue-500 text-center text-white py-2">
-          <span>
-            You are currently on the limited Free Plan{" "}
-            <Link
-              href="/link-to-premium"
-              target="_blank"
-              className="underline font-bold"
-            >
-              Upgrade to Premium for more features
-            </Link>
-          </span>
-        </div>
-      )}
+      <PlanNotice />
 
       <div className="px-5">
         <Header />
@@ -284,20 +270,7 @@ function page() {
 
       <div className="border-t lg:flex">
         <div className="lg:w-1/3 lg:border-r p-7 space-y-5">
-          {packageType !== "free" ? (
-            <div className="pb-5">
-              <button className="bg-sky-300 text-sky-700 border-sky-700 rounded-md border px-5 py-1 text-sm font-bold">
-                Pro Plan
-              </button>
-            </div>
-          ) : (
-            <div className="pb-5">
-              <button className="bg-yellow-300 text-yellow-700 border-yellow-700 rounded-md border px-5 py-1 text-sm font-bold">
-                Free Plan
-              </button>
-            </div>
-          )}
-          <span className="font-bold text-2xl underline">
+          <span className="font-bold text-2xl">
             Custom Modular Home Design Studio
           </span>
           <div>

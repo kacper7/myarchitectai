@@ -8,10 +8,13 @@ import React, {
 } from "react";
 import { createClient, SupabaseClient, User } from "@supabase/supabase-js";
 import { setCookie, deleteCookie } from "../utils/cookies";
+import { Database } from '../types/supabase';
 
+type UserDetails = Database["public"]["Tables"]["user_details"]["Row"]
 interface SupabaseContextType {
   supabase: SupabaseClient;
   user: User | null;
+  userDetails: UserDetails  | null;
   packageType: string;
   subscriptionActive: boolean;
   signInWithGoogle: () => Promise<void>;
@@ -46,6 +49,7 @@ const SupabaseProvider: React.FC<SupabaseProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [packageType, setPackageType] = useState("free");
   const [subscriptionActive, setSubscriptionActive] = useState(false);
+  const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
 
   async function fetchUser() {
     await supabase.auth.getUser().then(({ data }) => {
@@ -115,6 +119,7 @@ const SupabaseProvider: React.FC<SupabaseProviderProps> = ({ children }) => {
         return;
       }
 
+      setUserDetails(data);
       const {
         subscription_package,
         subscription_status,
@@ -141,7 +146,10 @@ const SupabaseProvider: React.FC<SupabaseProviderProps> = ({ children }) => {
   return (
     <SupabaseContext.Provider
       value={
-        { supabase, user, signInWithGoogle, signInWithEmail, signUpWithEmail, packageType, subscriptionActive }
+        {
+          supabase, user, signInWithGoogle, signInWithEmail, signUpWithEmail,
+          packageType, subscriptionActive, userDetails
+        }
       }
     >
       {children}

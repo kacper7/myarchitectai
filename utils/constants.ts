@@ -6,10 +6,15 @@ const SUPABASE_JWT_SECRET = process.env.SUPABASE_JWT_SECRET || ""
 const MAX_FREE_RENDERS = parseInt(process.env.MAX_FREE_RENDERS || '10', 10)
 const MAX_STARTER_RENDERS = parseInt(process.env.MAX_STARTER_RENDERS || '100')
 
+const LEMON_SQUEEZY_URL_PARAMS = new URLSearchParams({
+  'discount': '0',
+})
+
 export {
   LEMON_SQUEEZY_URL,
   LEMON_SQUEEZY_SIGNING_KEY,
   SUPABASE_JWT_SECRET,
   MAX_FREE_RENDERS,
   MAX_STARTER_RENDERS,
+  LEMON_SQUEEZY_URL_PARAMS,
 }
