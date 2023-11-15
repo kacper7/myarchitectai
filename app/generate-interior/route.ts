@@ -19,7 +19,8 @@ export async function POST(request: NextRequest) {
   if (!userDetails) {
     return NextResponse.json({ error: "Please sign in to perform this action" }, { status: 401 });
   }
-  const canRender = allowedToRender(userDetails.subscription_package, userDetails.number_of_renders);
+  const subscriptionPackage = userDetails.subscription_package || "free";
+  const canRender = allowedToRender(subscriptionPackage, userDetails.number_of_renders!);
   if (!canRender) {
     return NextResponse.json(
       { error: "You have reached your render limit for this month. Please upgrade to a paid plan to continue using this feature." },
@@ -99,7 +100,7 @@ export async function POST(request: NextRequest) {
   }
 
   if (restoredImage) {
-    updateRendersCount(userDetails.id);
+    updateRendersCount(userDetails.user_id!);
   }
 
   return NextResponse.json(

@@ -39,6 +39,7 @@ import { useSupabase } from "../../components/supabaseProvider";
 import { User } from "@supabase/supabase-js";
 import PubSub from "pubsub-js";
 import { REQUEST_SIGN_IN_MODAL } from "../../utils/events";
+import PlanNotice from "../../components/PlanNotice";
 
 const uploader = Uploader({
   apiKey: !!process.env.NEXT_PUBLIC_UPLOAD_API_KEY
@@ -241,43 +242,15 @@ function page() {
 
   return (
     <div className="m-auto">
-      {/* <Header /> */}
+      <PlanNotice />
 
-      {packageType !== "free" ? null : (
-        <div className="bg-blue-500 text-center text-white py-2">
-          <span>
-            You are currently on the limited Free Plan{" "}
-            <Link
-              href="/link-to-premium"
-              target="_blank"
-              className="underline font-bold"
-            >
-              Upgrade to Premium for more features
-            </Link>
-          </span>
-        </div>
-      )}
-
-<div className="px-5">
-          <Header />
-        </div>
+      <div className="px-5">
+        <Header />
+      </div>
 
       <div className="border-t lg:flex">
         <div className="lg:w-1/3 lg:border-r p-7 space-y-5">
-          {packageType !== "free" ? (
-            <div className="pb-5">
-              <button className="bg-sky-300 text-sky-700 border-sky-700 rounded-md border px-5 py-1 text-sm font-bold">
-                Pro Plan
-              </button>
-            </div>
-          ) : (
-            <div className="pb-5">
-              <button className="bg-yellow-300 text-yellow-700 border-yellow-700 rounded-md border px-5 py-1 text-sm font-bold">
-                Free Plan
-              </button>
-            </div>
-          )}
-          <span className="font-bold text-2xl underline">
+          <span className="font-bold text-2xl">
             Floorplan Design Studio
           </span>
           <div>
@@ -322,7 +295,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3">
                   <p className="text-left font-bold text-stone-600">
-                    Choose your style ({houseStyles.length})
+                    Choose your style
                   </p>
                 </div>
                 <DropDownRestricted
@@ -337,7 +310,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3">
                   <p className="text-left font-bold text-stone-600">
-                    Choose your flooring material ({floorings.length})
+                    Choose your flooring material
                   </p>
                 </div>
                 <DropDownRestricted
@@ -354,7 +327,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3">
                   <p className="text-left font-bold text-stone-600">
-                    Choose your style ({houseStyles.length})
+                    Choose your style
                   </p>
                 </div>
                 <DropDown
@@ -369,7 +342,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3">
                   <p className="text-left font-bold text-stone-600">
-                    Choose your flooring material ({floorings.length})
+                    Choose your flooring material
                   </p>
                 </div>
                 <DropDown
@@ -391,7 +364,7 @@ function page() {
             }}
             className="bg-blue-500 rounded-full text-white font-medium px-4 py-2 mt-8 hover:bg-blue-500/80 transition w-full"
           >
-            Build my idea
+            Generate
           </button>
         </div>
         <div className="lg:w-2/3 p-7 space-y-3">

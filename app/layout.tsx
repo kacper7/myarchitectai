@@ -47,27 +47,36 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Script
+        id="gtag-manager"
         strategy="afterInteractive"
-        src="https://www.googletagmanager.com/gtag/js?id=G-JQZ1BCDXW1"
-      ></Script>
-      <Script
-        id="google-analytics"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-JQZ1BCDXW1', {
-            page_path: window.location.pathname,
-          });
-        `,
-        }}
-      />
+      >
+        {`
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-PB8G4DM6');
+        `}
+      </Script>
+      <Script id="crisp-chat" strategy="afterInteractive">
+        {`
+          window.$crisp=[];window.CRISP_WEBSITE_ID="7f07d665-b3d3-4cd0-9792-a7d2e1118264";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
+        `}
+      </Script>
       <SupabaseProvider>
         <body style={{ zIndex: 2 }} className={inter.className}>
           <Providers>{children}</Providers>
           <Analytics />
+          <noscript
+          >
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=GTM-PB8G4DM6"
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
+
         </body>
       </SupabaseProvider>
     </html>
