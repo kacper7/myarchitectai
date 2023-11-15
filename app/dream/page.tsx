@@ -341,7 +341,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3">
                   <p className="text-left font-bold text-stone-600">
-                    Choose your style ({houseStyles.length})
+                    Choose your style
                   </p>
                 </div>
                 <DropDownRestricted
@@ -356,7 +356,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3 text-stone-600">
                   <p className="text-left font-bold">
-                    Choose your location ({locations.length})
+                    Choose your location
                   </p>
                 </div>
                 <DropDownRestricted
@@ -371,7 +371,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3 text-stone-600">
                   <p className="text-left font-bold">
-                    Choose your material ({materials.length})
+                    Choose your material
                   </p>
                 </div>
                 <DropDownRestricted
@@ -386,7 +386,7 @@ function page() {
               <div className="space-y-4 w-full">
                 <div className="flex mt-10 items-center space-x-3 text-stone-600">
                   <p className="text-left font-bold">
-                    Choose the season ({seasons.length})
+                    Choose the season
                   </p>
                 </div>
                 <DropDownRestricted
@@ -403,7 +403,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3">
                   <p className="text-left font-bold text-stone-600">
-                    Choose your building type ({buildingTypes.length})
+                    Choose your building type
                   </p>
                 </div>
                 <DropDown
@@ -418,7 +418,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3">
                   <p className="text-left font-bold text-stone-600">
-                    Choose your style ({houseStyles.length})
+                    Choose your style
                   </p>
                 </div>
                 <DropDown
@@ -433,7 +433,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3 text-stone-600">
                   <p className="text-left font-bold">
-                    Choose your location ({locations.length})
+                    Choose your location
                   </p>
                 </div>
                 <DropDown
@@ -448,7 +448,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3 text-stone-600">
                   <p className="text-left font-bold">
-                    Choose your material ({materials.length})
+                    Choose your material
                   </p>
                 </div>
                 <DropDown
@@ -463,7 +463,7 @@ function page() {
               <div className="space-y-4 w-full">
                 <div className="flex mt-10 items-center space-x-3 text-stone-600">
                   <p className="text-left font-bold">
-                    Choose the season ({seasons.length})
+                    Choose the season
                   </p>
                 </div>
                 <DropDown

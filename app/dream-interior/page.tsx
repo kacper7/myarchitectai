@@ -307,7 +307,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3 text-stone-600">
                   <p className="text-left font-bold">
-                    Choose your building type ({buildingTypes.length})
+                    Choose your building type
                   </p>
                 </div>
                 <DropDownRestricted
@@ -321,7 +321,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3 text-stone-600">
                   <p className="text-left font-bold">
-                    Choose your style ({interiorStyles.length})
+                    Choose your style
                   </p>
                 </div>
                 <DropDownRestricted
@@ -336,7 +336,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3 text-stone-600">
                   <p className="text-left font-bold">
-                    Choose your lighting ({lightings.length})
+                    Choose your lighting
                   </p>
                 </div>
                 <DropDownRestricted
@@ -353,7 +353,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3 text-stone-600">
                   <p className="text-left font-bold">
-                    Choose your building type ({buildingTypes.length})
+                    Choose your building type
                   </p>
                 </div>
                 <DropDown
@@ -367,7 +367,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3 text-stone-600">
                   <p className="text-left font-bold">
-                    Choose your style ({interiorStyles.length})
+                    Choose your style
                   </p>
                 </div>
                 <DropDown
@@ -382,7 +382,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3 text-stone-600">
                   <p className="text-left font-bold">
-                    Choose your lighting ({lightings.length})
+                    Choose your lighting
                   </p>
                 </div>
                 <DropDown

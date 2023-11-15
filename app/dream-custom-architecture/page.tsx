@@ -297,7 +297,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3">
                   <p className="text-left font-bold text-stone-600">
-                    Choose the number of floors ({floors.length})
+                    Choose the number of floors
                   </p>
                 </div>
                 <DropDown
@@ -312,7 +312,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3">
                   <p className="text-left font-bold text-stone-600">
-                    Choose the color ({colors.length})
+                    Choose the color
                   </p>
                 </div>
                 <DropDown
@@ -325,7 +325,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3 text-stone-600">
                   <p className="text-left font-bold">
-                    Choose your location ({locations.length})
+                    Choose your location
                   </p>
                 </div>
                 <DropDown
@@ -353,7 +353,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3">
                   <p className="text-left font-bold text-stone-600">
-                    Choose the number of floors ({floors.length})
+                    Choose the number of floors
                   </p>
                 </div>
                 <DropDown
@@ -368,7 +368,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3">
                   <p className="text-left font-bold text-stone-600">
-                    Choose the color ({colors.length})
+                    Choose the color
                   </p>
                 </div>
                 <DropDown
@@ -381,7 +381,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3 text-stone-600">
                   <p className="text-left font-bold">
-                    Choose your location ({locations.length})
+                    Choose your location
                   </p>
                 </div>
                 <DropDown
