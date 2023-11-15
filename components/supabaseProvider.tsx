@@ -71,6 +71,7 @@ const SupabaseProvider: React.FC<SupabaseProviderProps> = ({ children }) => {
 
       const { user } = data;
       if (user) setUser(user);
+      checkUserPackage();
     }).catch((error) => {
       console.log(error);
     })
