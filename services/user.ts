@@ -2,8 +2,11 @@ import jwt from "jsonwebtoken";
 import { SUPABASE_JWT_SECRET } from "../utils/constants";
 import supabaseAdmin from "../utils/supabaseAdmin";
 import { MAX_FREE_RENDERS, MAX_STARTER_RENDERS } from "../utils/constants";
+import { Database } from '../types/supabase';
 
-async function validateUserFromJWT(accessToken?: string): Promise<any> {
+type UserDetails = Database["public"]["Tables"]["user_details"]["Row"];
+
+async function validateUserFromJWT(accessToken?: string): Promise<UserDetails | null> {
   if (!accessToken) return null;
 
   try {
@@ -15,7 +18,7 @@ async function validateUserFromJWT(accessToken?: string): Promise<any> {
     const { data, error } = await supabaseAdmin.from("user_details").select("*").eq("email", email).single()
     if (error) throw error
 
-    return data;
+    return data as UserDetails;
   } catch (err) {
     console.error(err);
     return null;

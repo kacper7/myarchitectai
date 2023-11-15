@@ -32,15 +32,6 @@ export default function AuthHeaderOptions() {
 
   const items: MenuProps['items'] = [
     {
-      key: '1',
-      label: (
-        <a target="_blank" rel="noopener noreferrer" className="text-base" href="https://sub.myarchitectai.com/billing">
-          {/* TODO: replace link with signed url */}
-          Manage subscription
-        </a>
-      ),
-    },
-    {
       key: '2',
       label: (
         <button className="text-base" onClick={handleSignOut}>
@@ -49,6 +40,19 @@ export default function AuthHeaderOptions() {
       )
     }
   ];
+
+  if (userDetails?.lemon_squeezy_id) {
+    items.unshift(
+      {
+        key: '1',
+        label: (
+          <a target="_blank" rel="noopener noreferrer" className="text-base" href="/lemon-squeezy-portal">
+            Manage subscription
+          </a>
+        ),
+      },
+    )
+  }
 
   if (!user) {
     return (
