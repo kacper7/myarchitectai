@@ -9,7 +9,7 @@ module.exports = {
     return [
       {
         source: '/signup',
-        destination: '/dream'
+        destination: '/exterior'
       }
     ]
   }

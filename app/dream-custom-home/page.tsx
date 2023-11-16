@@ -100,7 +100,7 @@ function Page() {
   const [highlight, setHighlight] = useState(false);
 
   const [userPrompt, setUserPrompt] = useState("");
-  const { user, packageType } = useSupabase();
+  const { user, packageType, checkUserPackage } = useSupabase();
 
   const handleDragEnter = (event: any) => {
     event.preventDefault();
@@ -244,6 +244,7 @@ function Page() {
         const newPhoto = await response.json();
         console.log(newPhoto);
         setRestoredImage(newPhoto[0]);
+        checkUserPackage();
       } else if (response.status === 504) {
         alert(
           "Experiencing timeouts? Upgrade to our Pro plan for unlimited images and priority access. Elevate your design process with MyArchitectAI's seamless performance."

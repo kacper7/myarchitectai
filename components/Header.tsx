@@ -18,28 +18,28 @@ export default function Header() {
           {user ? (
             <div className="space-x-5 flex items-center">
               <div>
-                <Link href={"/dream-interior"}>
+                <Link href={"/interior"}>
                   <span className="font-bold text-stone-600">
                     Interior Studio
                   </span>
                 </Link>
               </div>
               <div>
-                <Link href={"/dream"}>
+                <Link href={"/exterior"}>
                   <span className="font-bold text-stone-600">
                     Exterior Studio
                   </span>
                 </Link>
               </div>
               <div>
-                <Link href={"/dream-floorplan"}>
+                <Link href={"/floorplan"}>
                   <span className="font-bold text-stone-600">
                     Floorplan Studio
                   </span>
                 </Link>
               </div>
               <div>
-                <Link href={"/dream-custom-architecture"}>
+                <Link href={"/dream-home"}>
                   <span className="font-bold text-stone-600">
                     Dream Home Generator
                   </span>

@@ -93,7 +93,7 @@ export default function HomePage() {
                 {user ? (
                   <Link
                     className="bg-black font-bold rounded-md text-white px-10 py-3 hover:bg-blue-500 transition"
-                    href={"/dream"}
+                    href={"/exterior"}
                   >
                     Go to the MyArchitectAI app →
                   </Link>
@@ -180,7 +180,7 @@ export default function HomePage() {
               <div className="pt-12">
                 <Link
                   className="bg-black rounded-xl text-white font-medium px-4 py-3 lg:mt-0 sm:mt-10  hover:bg-black transition"
-                  href={"/dream"}
+                  href={"/exterior"}
                 >
                   Build your dream home for free →
                 </Link>
@@ -299,7 +299,7 @@ export default function HomePage() {
                 {user ? (
                   <Link
                     className="bg-black font-bold rounded-md text-white px-10 py-3 hover:bg-blue-500 transition"
-                    href={"/dream"}
+                    href={"/exterior"}
                   >
                     Go to the MyArchitectAI app →
                   </Link>
@@ -332,7 +332,7 @@ export default function HomePage() {
                 {user ? (
                   <Link
                     className="bg-black font-bold rounded-md text-white px-10 py-3 hover:bg-blue-500 transition"
-                    href={"/dream"}
+                    href={"/exterior"}
                   >
                     Go to the MyArchitectAI app →
                   </Link>
@@ -533,7 +533,7 @@ export default function HomePage() {
           <div className="pt-12">
             <Link
               className="bg-black rounded-xl text-white font-medium px-4 py-3 lg:mt-0 sm:mt-10  hover:bg-black transition"
-              href={"/dream"}
+              href={"/exterior"}
             >
               Build your dream home for free →
             </Link>
@@ -666,7 +666,7 @@ export default function HomePage() {
                   {user ? (
                     <Link
                       className="bg-blue-500 rounded-md w-full text-white px-4 py-3 hover:bg-black transition font-bold"
-                      href={"/dream"}
+                      href={"/exterior"}
                     >
                       Go to the MyArchitectAI app →
                     </Link>
@@ -989,7 +989,7 @@ export default function HomePage() {
           <div className="mt-12">
             <Link
               className="bg-black rounded-xl text-white font-medium px-4 py-3 hover:bg-black transition"
-              href={"/dream"}
+              href={"/exterior"}
             >
               Build your dream home for free →
             </Link>

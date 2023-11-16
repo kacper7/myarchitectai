@@ -143,7 +143,7 @@ function Page() {
                 {user ? (
                   <Link
                     className="bg-blue-500 rounded-md w-full text-white px-4 py-3 hover:bg-black transition font-bold"
-                    href={"/dream"}
+                    href={"/exterior"}
                   >
                     Go to the MyArchitectAI app →
                   </Link>
