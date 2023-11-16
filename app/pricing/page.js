@@ -6,7 +6,7 @@ import Link from "next/link";
 import Footer from "../../components/Footer";
 import { REQUEST_SIGN_IN_MODAL } from "../../utils/events";
 
-function page() {
+function Page() {
   const { supabase, user } = useSupabase();
 
   function requestSignInModal() {
@@ -432,4 +432,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

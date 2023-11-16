@@ -73,7 +73,7 @@ const options = {
   // },
 };
 
-function page() {
+function Page() {
   const [originalPhoto, setOriginalPhoto] = useState<string | null>(null);
   const [restoredImage, setRestoredImage] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -472,4 +472,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

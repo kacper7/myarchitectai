@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Header from "../../components/Header";
 
-function transcription() {
+function Transcription() {
   const [transcript, setTranscript] = useState("123");
   const [url, setUrl] = useState("");
 
@@ -48,4 +48,4 @@ function transcription() {
   );
 }
 
-export default transcription;
+export default Transcription;

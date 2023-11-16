@@ -125,7 +125,7 @@ export default function AuthSignInModal() {
         </form>
         { !isSignUp && (
           <p className="w-full text-center">
-            Don't have an account?
+            Don&apos;t have an account?
             <button className="ml-1 underline" onClick={toggleSignUp}>Sign Up</button>
           </p>
         )}
