@@ -6,7 +6,7 @@ import Link from "next/link";
 import Footer from "../../components/Footer";
 import { REQUEST_SIGN_IN_MODAL } from "../../utils/events";
 
-function page() {
+function Page() {
   const { supabase, user } = useSupabase();
 
   function requestSignInModal() {
@@ -21,7 +21,7 @@ function page() {
           <div className="space-y-5">
             <div>
               <span className="font-bold text-4xl">
-                <span className="text-blue-500">15x</span> cheaper than what you're currently paying.
+                <span className="text-blue-500">15x</span> cheaper than what you&apos;re currently paying.
               </span>
             </div>
             <div>
@@ -432,4 +432,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

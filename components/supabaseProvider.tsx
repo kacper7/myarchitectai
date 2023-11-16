@@ -142,6 +142,7 @@ const SupabaseProvider: React.FC<SupabaseProviderProps> = ({ children }) => {
   useEffect(() => {
     fetchUser();
     checkUserPackage();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

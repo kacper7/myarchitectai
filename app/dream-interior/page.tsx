@@ -73,7 +73,7 @@ const options = {
   // },
 };
 
-function page() {
+function Page() {
   const [originalPhoto, setOriginalPhoto] = useState<string | null>(null);
   const [restoredImage, setRestoredImage] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -105,9 +105,9 @@ function page() {
   // supaabse stuff
   const { user, packageType } = useSupabase();
 
-  const acceptedFileTypes = ["image/png", "image/jpeg"];
-
   const onDrop = useCallback((acceptedFiles: File[]) => {
+    const acceptedFileTypes = ["image/png", "image/jpeg"];
+
     for (const file of acceptedFiles) {
       if (file && acceptedFileTypes.includes(file.type)) {
         const reader = new FileReader();
@@ -479,4 +479,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

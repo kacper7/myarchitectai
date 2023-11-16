@@ -1,5 +1,5 @@
 "use client";
-import img from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -42,7 +42,7 @@ export default function HomePage() {
               <div className="space-y-2 text-stone-600 lg:text-sm sm:text-xs text-left">
                 <div className="flex space-x-3 items-center">
                   <div>
-                    <img src="/img/tick-tutor.png" height={20} width={20} />
+                    <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                   </div>
                   <div>
                     <span className="">
@@ -54,7 +54,7 @@ export default function HomePage() {
                 </div>
                 <div className="flex space-x-3 items-center">
                   <div>
-                    <img src="/img/tick-tutor.png" height={20} width={20} />
+                    <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                   </div>
                   <div>
                     <span className="">
@@ -65,7 +65,7 @@ export default function HomePage() {
                 </div>
                 <div className="flex space-x-3 items-center">
                   <div>
-                    <img src="/img/tick-tutor.png" height={20} width={20} />
+                    <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                   </div>
                   <div>
                     <span className="">
@@ -77,7 +77,7 @@ export default function HomePage() {
                 </div>
                 <div className="flex space-x-3 items-center ">
                   <div>
-                    <img src="/img/tick-tutor.png" height={20} width={20} />
+                    <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                   </div>
                   <div>
                     <span className="">
@@ -109,7 +109,7 @@ export default function HomePage() {
 
               <div className="flex space-x-3 w-full items-center lg:justify-start justify-center">
                 <div>
-                  <img src="/img/star.png" width={70} />
+                  <img src="/img/star.png" width={70} alt="star" />
                 </div>
 
                 <div>
@@ -143,16 +143,16 @@ export default function HomePage() {
             </div> */}
               <div className=" lg:flex lg:space-x-10 justify-center lg:space-y-0 space-y-7">
                 <div style={{ width: 200 }}>
-                  <img src="/img/saashub.webp" className="" />
+                  <img src="/img/saashub.webp" className="" alt="saashub" />
                 </div>
                 <div style={{ width: 200 }}>
-                  <img src="/img/whattheai.PNG" className="" />
+                  <img src="/img/whattheai.PNG" className="" alt="whattheai" />
                 </div>
                 <div style={{ width: 200 }}>
-                  <img src="/img/saasaitools.PNG" className="rounded-md" />
+                  <img src="/img/saasaitools.PNG" className="rounded-md" alt="saasaitools" />
                 </div>
                 <div style={{ width: 200 }}>
-                  <img src="/img/saasbaba.png" className="rounded-md" />
+                  <img src="/img/saasbaba.png" className="rounded-md" alt="saasbaba" />
                 </div>
               </div>
             </div>
@@ -194,7 +194,7 @@ export default function HomePage() {
             </div>
             <div className="flex justify-center">
               <div className=" text-stone-700">
-                Visualize your ideas photorealistically in seconds. (It's easy
+                Visualize your ideas photorealistically in seconds. (It&apos;s easy
                 as one two three)
               </div>
             </div>
@@ -206,6 +206,7 @@ export default function HomePage() {
                     <img
                       className="border rounded-md shadow-md h-48 w-full object-cover"
                       src="/img/interior-before.png"
+                      alt="interior-before"
                     />
                   </div>
                   <div>
@@ -216,7 +217,7 @@ export default function HomePage() {
                   <div>
                     <span className="text-stone-600">
                       Upload your idea to the web editor and watch the magic
-                      happen. Whether it's a rough sketch, a 3d render, or a
+                      happen. Whether it&apos;s a rough sketch, a 3d render, or a
                       photo of a real property, MyArchitectAI will revisualize
                       it into beautiful photorealistic renders in a matter of
                       seconds.{" "}
@@ -230,6 +231,7 @@ export default function HomePage() {
                     <img
                       className="border rounded-md shadow-md h-48 w-full object-cover"
                       src="/img/options.PNG"
+                      alt="options"
                     />
                   </div>
                   <div>
@@ -242,8 +244,8 @@ export default function HomePage() {
                       With over 100+ architectural styles, made to fulfill every
                       need, freely pick the styles and lighting options that
                       best match your designs and watch your imagination fly.
-                      Whether it's the interior,exterior or even floorplans,
-                      we've got you covered from top to toe.
+                      Whether it&apos;s the interior,exterior or even floorplans,
+                      we&apos;ve got you covered from top to toe.
                     </span>
                   </div>
                 </div>
@@ -254,6 +256,7 @@ export default function HomePage() {
                     <img
                       className="border rounded-md shadow-md h-48 w-full object-cover"
                       src="/img/interior-after.png"
+                      alt="interior-after"
                     />
                   </div>
                   <div>
@@ -320,7 +323,7 @@ export default function HomePage() {
               </div>
               <div>
                 <span className="">
-                  We've revolutionized the way you approach architecture and
+                  We&apos;ve revolutionized the way you approach architecture and
                   decor, making it accessible to everyone, regardless of
                   expertise.
                 </span>
@@ -394,11 +397,12 @@ export default function HomePage() {
                 <div className="lg:grid grid-cols-2 gap-10">
                   <div className="rounded-xl space-y-3">
                     <div className="">
-                      <img
+                      <Image
                         className="h-48 bg-black cover rounded-xl w-full object-cover"
                         src={"/img/architects.jpg"}
                         height={300}
                         width={400}
+                        alt="architects"
                       />
                     </div>
                     <div className="rounded-b-xl">
@@ -426,11 +430,12 @@ export default function HomePage() {
                   </div>{" "}
                   <div className="rounded-xl space-y-3 ">
                     <div className="">
-                      <img
+                      <Image
                         className="h-48 bg-black cover rounded-xl w-full object-cover"
                         src={"/img/interior-designers.jpg"}
                         height={300}
                         width={400}
+                        alt="interior-designers"
                       />
                     </div>
                     <div className="rounded-b-xl">
@@ -457,11 +462,12 @@ export default function HomePage() {
                   </div>{" "}
                   <div className="rounded-xl space-y-3 ">
                     <div className="">
-                      <img
+                      <Image
                         className="h-48 bg-black cover rounded-xl w-full object-cover"
                         src={"/img/real-estate-agents.jpg"}
                         height={300}
                         width={400}
+                        alt="real-estate-agents"
                       />
                     </div>
                     <div className="rounded-b-xl">
@@ -489,11 +495,12 @@ export default function HomePage() {
                   </div>{" "}
                   <div className="rounded-xl space-y-3 ">
                     <div className="">
-                      <img
+                      <Image
                         className="h-48 bg-black cover rounded-xl w-full object-cover"
                         src={"/img/home-lovers.jpg"}
                         height={300}
                         width={400}
+                        alt="home-lovers"
                       />
                     </div>
                     <div className="rounded-b-xl">
@@ -536,7 +543,7 @@ export default function HomePage() {
             <div className="space-y-5">
               <div>
                 <span className="font-bold text-4xl">
-                  15x cheaper than what you're currently paying.
+                  15x cheaper than what you&apos;re currently paying.
                 </span>
               </div>
               <div>
@@ -571,7 +578,7 @@ export default function HomePage() {
                 <div className="space-y-3 h-[400px]">
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">
@@ -602,7 +609,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">
@@ -615,7 +622,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">Interior design studio</span>
@@ -623,7 +630,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">Access to all future updates</span>
@@ -631,7 +638,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">Request new features</span>
@@ -639,7 +646,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">Customer support</span>
@@ -648,7 +655,7 @@ export default function HomePage() {
 
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">Small watermark</span>
@@ -695,7 +702,7 @@ export default function HomePage() {
                 <div className="space-y-3 h-[400px]">
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">
@@ -724,7 +731,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">
@@ -735,7 +742,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">Interior Design Studio</span>
@@ -743,7 +750,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">Exterior Design Studio</span>
@@ -751,7 +758,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">Floorplan Design Studio</span>
@@ -759,7 +766,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">Access to all future updates</span>
@@ -767,7 +774,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">Request new features</span>
@@ -775,7 +782,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">Customer support</span>
@@ -784,7 +791,7 @@ export default function HomePage() {
 
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">No watermark</span>
@@ -827,7 +834,7 @@ export default function HomePage() {
                 <div className="space-y-3 h-[400px]">
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">
@@ -856,7 +863,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">
@@ -867,7 +874,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">Interior Design Studio</span>
@@ -875,7 +882,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">Exterior Design Studio</span>
@@ -883,7 +890,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20}  alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">Floorplan Design Studio</span>
@@ -891,7 +898,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">Access to all future updates</span>
@@ -899,7 +906,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">Request new features</span>
@@ -907,7 +914,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">Customer support</span>
@@ -916,7 +923,7 @@ export default function HomePage() {
 
                   <div className="flex space-x-3 items-center">
                     <div>
-                      <img src="/img/tick-tutor.png" height={20} width={20} />
+                      <Image src="/img/tick-tutor.png" height={20} width={20} alt="tick-tutor" />
                     </div>
                     <div>
                       <span className="">No watermark</span>
@@ -997,7 +1004,7 @@ export default function HomePage() {
               </div>
               <div className="text-left">
                 <span>
-                  Answers to common questions about MyArchitectureAI's services
+                  Answers to common questions about MyArchitectureAI&apos;s services
                   for architects, interior desginers, real estate agents and
                   home lovers.
                 </span>
