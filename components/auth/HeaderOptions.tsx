@@ -22,7 +22,7 @@ export default function AuthHeaderOptions() {
       const { error } = await supabase.auth.signOut();
 
       if (!error) {
-        window.location.reload();
+        window.location.href = "/";
       }
     } catch (error) {
       // TODO: Handle error
