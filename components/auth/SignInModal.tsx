@@ -4,7 +4,7 @@ import { Modal } from "antd";
 import PubSub from "pubsub-js";
 import { REQUEST_SIGN_IN_MODAL } from "../../utils/events";
 import { useSupabase } from "../supabaseProvider";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function AuthSignInModal() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,6 +18,7 @@ export default function AuthSignInModal() {
   const [isSticky, setIsSticky] = useState(false);
   const { signInWithGoogle, signInWithEmail, signUpWithEmail } = useSupabase();
   const pathname = usePathname();
+  const router = useRouter();
 
   const toggleSignUp = () => {
     setIsSignUp(!isSignUp);
@@ -45,7 +46,7 @@ export default function AuthSignInModal() {
       await signInWithEmail(email, password).then((errors) => {
         setErrors(errors);
         if (isSignUpPage) {
-          window.location.href = "/dream";
+          router.push("/dream");
         }
       })
     }
