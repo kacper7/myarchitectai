@@ -25,12 +25,6 @@ export default function AuthSignInModal() {
     setNotices([]);
   }
 
-  const showModal = (msg: string, data: Record<string, unknown>) => {
-    setIsSignUpPage(pathname === "/signup");
-    if (data.sticky) { setIsSticky(true) }
-    setIsModalOpen(true);
-  }
-
   const handleCancel = () => {
     setIsModalOpen(false);
   }
@@ -59,12 +53,16 @@ export default function AuthSignInModal() {
   }
 
   useEffect(() => {
-    const token = PubSub.subscribe(REQUEST_SIGN_IN_MODAL, showModal);
+    const token = PubSub.subscribe(REQUEST_SIGN_IN_MODAL, (msg, data) => {
+      setIsSignUpPage(pathname === "/signup");
+      if (data.sticky) { setIsSticky(true) }
+      setIsModalOpen(true);
+    });
 
     return () => {
       PubSub.unsubscribe(token);
     }
-  }, [])
+  }, [pathname])
 
 
   return (

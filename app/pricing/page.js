@@ -21,7 +21,7 @@ function Page() {
           <div className="space-y-5">
             <div>
               <span className="font-bold text-4xl">
-                <span className="text-blue-500">15x</span> cheaper than what you're currently paying.
+                <span className="text-blue-500">15x</span> cheaper than what you&apos;re currently paying.
               </span>
             </div>
             <div>

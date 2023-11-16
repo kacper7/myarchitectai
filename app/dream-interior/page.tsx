@@ -105,9 +105,9 @@ function Page() {
   // supaabse stuff
   const { user, packageType } = useSupabase();
 
-  const acceptedFileTypes = ["image/png", "image/jpeg"];
-
   const onDrop = useCallback((acceptedFiles: File[]) => {
+    const acceptedFileTypes = ["image/png", "image/jpeg"];
+
     for (const file of acceptedFiles) {
       if (file && acceptedFileTypes.includes(file.type)) {
         const reader = new FileReader();
