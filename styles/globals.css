@@ -29,3 +29,7 @@ background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
     pointer-events: none;
   }
 }
+
+.ant-modal-mask-blurred {
+  backdrop-filter: blur(3px);
+}
