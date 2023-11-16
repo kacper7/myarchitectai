@@ -38,6 +38,7 @@ import { useSupabase } from "../../components/supabaseProvider";
 import { User } from "@supabase/supabase-js";
 import { REQUEST_SIGN_IN_MODAL } from "../../utils/events";
 import PlanNotice from "../../components/PlanNotice";
+import { usePathname } from 'next/navigation'
 
 const uploader = Uploader({
   apiKey: !!process.env.NEXT_PUBLIC_UPLOAD_API_KEY
@@ -93,6 +94,7 @@ function page() {
   const [highlight, setHighlight] = useState(false);
 
   const { supabase, user, packageType } = useSupabase();
+  const pathname = usePathname()
 
   const handleDragEnter = (event: any) => {
     event.preventDefault();
@@ -256,14 +258,19 @@ function page() {
     }
   }
 
+  useEffect(() => {
+    if (pathname === '/signup' || !user) {
+      PubSub.publish(REQUEST_SIGN_IN_MODAL, { sticky: true });
+    }
+  }, [pathname, user]);
+
   return (
     <div className="m-auto">
-      <PlanNotice />
+      { pathname !== '/signup' && <PlanNotice /> }
 
-        <div className="px-5">
-          <Header />
-        </div>
-      
+      <div className="px-5">
+        <Header />
+      </div>
 
       <div className="border-t lg:flex">
         <div className="lg:w-1/3 lg:border-r p-7 space-y-5">
@@ -326,7 +333,7 @@ function page() {
               <div className="space-y-4 w-full ">
                 <div className="flex mt-10 items-center space-x-3">
                   <p className="text-left font-bold text-stone-600">
-                    Choose your building type ({buildingTypes.length})
+                    Choose your building type
                   </p>
                 </div>
                 <DropDownRestricted

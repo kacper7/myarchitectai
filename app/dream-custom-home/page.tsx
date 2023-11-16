@@ -260,6 +260,12 @@ function page() {
     }
   }
 
+  useEffect(() => {
+    if (!user) {
+      PubSub.publish(REQUEST_SIGN_IN_MODAL, { sticky: true });
+    }
+  }, [user]);
+
   return (
     <div className="m-auto">
       <PlanNotice />
