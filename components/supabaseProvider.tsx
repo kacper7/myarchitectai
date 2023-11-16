@@ -20,6 +20,7 @@ interface SupabaseContextType {
   signInWithGoogle: () => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<string[]>;
   signUpWithEmail: (email: string, password: string) => Promise<string[]>;
+  checkUserPackage: () => Promise<void>;
 }
 
 const SupabaseContext = createContext<SupabaseContextType | undefined>(
@@ -150,7 +151,7 @@ const SupabaseProvider: React.FC<SupabaseProviderProps> = ({ children }) => {
       value={
         {
           supabase, user, signInWithGoogle, signInWithEmail, signUpWithEmail,
-          packageType, subscriptionActive, userDetails
+          packageType, subscriptionActive, userDetails, checkUserPackage
         }
       }
     >
