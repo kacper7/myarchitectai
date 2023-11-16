@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server'
 
 const PRIVATE_URLS = [ // require authentication
   '/generate',
-  '/generate-custom-architect',
+  '/generate-custom-architecture',
   '/generate-custom-home',
   '/generate-floorplan',
   '/generate-interior',
@@ -21,7 +21,7 @@ export async function middleware(req: NextRequest) {
 
   if (req.nextUrl.pathname === '/signup') {
     if (accessToken) {
-      return NextResponse.redirect(new URL('/dream', req.nextUrl.origin))
+      return NextResponse.redirect(new URL('/exterior', req.nextUrl.origin))
     }
   }
 

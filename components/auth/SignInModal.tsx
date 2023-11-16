@@ -46,7 +46,7 @@ export default function AuthSignInModal() {
       await signInWithEmail(email, password).then((errors) => {
         setErrors(errors);
         if (isSignUpPage) {
-          router.push("/dream");
+          router.push("/exterior");
         }
       })
     }
