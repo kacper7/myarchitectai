@@ -4,4 +4,13 @@ module.exports = {
   images: {
     domains: ["upcdn.io", "replicate.delivery"],
   },
+
+  async rewrites() {
+    return [
+      {
+        source: '/signup',
+        destination: '/dream'
+      }
+    ]
+  }
 };

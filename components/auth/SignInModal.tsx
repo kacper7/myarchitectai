@@ -4,6 +4,7 @@ import { Modal } from "antd";
 import PubSub from "pubsub-js";
 import { REQUEST_SIGN_IN_MODAL } from "../../utils/events";
 import { useSupabase } from "../supabaseProvider";
+import { usePathname } from "next/navigation";
 
 export default function AuthSignInModal() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -12,8 +13,11 @@ export default function AuthSignInModal() {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
   const [notices, setNotices] = useState<string[]>([]);
-  const [isSignUp, setIsSignUp] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(true);
+  const [isSignUpPage, setIsSignUpPage] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
   const { signInWithGoogle, signInWithEmail, signUpWithEmail } = useSupabase();
+  const pathname = usePathname();
 
   const toggleSignUp = () => {
     setIsSignUp(!isSignUp);
@@ -21,7 +25,9 @@ export default function AuthSignInModal() {
     setNotices([]);
   }
 
-  const showModal = () => {
+  const showModal = (msg: string, data: Record<string, unknown>) => {
+    setIsSignUpPage(pathname === "/signup");
+    if (data.sticky) { setIsSticky(true) }
     setIsModalOpen(true);
   }
 
@@ -44,6 +50,9 @@ export default function AuthSignInModal() {
     } else {
       await signInWithEmail(email, password).then((errors) => {
         setErrors(errors);
+        if (isSignUpPage) {
+          window.location.href = "/dream";
+        }
       })
     }
     setIsLoading(false);
@@ -57,8 +66,16 @@ export default function AuthSignInModal() {
     }
   }, [])
 
+
   return (
-    <Modal open={isModalOpen} onCancel={handleCancel} footer={[]}>
+    <Modal
+      open={isModalOpen}
+      onCancel={handleCancel}
+      footer={[]}
+      maskClosable={ !isSticky }
+      closable={ !isSticky }
+      classNames={{ mask: `${isSignUpPage ? 'ant-modal-mask-blurred' : ''}` }}
+    >
       <div className="w-full px-4 pt-8 flex flex-col gap-4">
         <button
           className="font-bold border border-black px-5 py-2 rounded-md hover:border-blue-500 hover:text-blue-500"
